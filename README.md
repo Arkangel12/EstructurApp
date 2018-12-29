@@ -1,6 +1,7 @@
 # estructurapp
 
-App de para demostrar estructura basica
+App de para demostrar estructura básica y demas ejemplos que nos ayudara
+a comprender layouts y el uso de widgets en cada ocasión.
 
 ## Getting Started
 
