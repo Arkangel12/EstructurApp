@@ -1,7 +1,7 @@
 import 'package:estructurapp/src/screens/homeScreen.dart';
 import 'package:flutter/material.dart';
 
-class EstrurApp extends StatelessWidget {
+class EstructurApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
