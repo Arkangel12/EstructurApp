@@ -1,3 +1,4 @@
+import 'package:estructurapp/src/screens/secondScreen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -26,12 +27,14 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text(widget.title),
       ),
       body: Center(
-        child: Container()
+        child: Container(
+          child: Image.network('https://pbs.twimg.com/profile_images/1033695141901623301/W-VnxCiG_400x400.jpg'),
+        )
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
+        onPressed: () => Navigator.of(context).push(SecondScreen.route()),
+        tooltip: 'Ir a pagina dos',
+        child: Icon(Icons.laptop_mac),
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

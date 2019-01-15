@@ -10,7 +10,7 @@ class EstructurApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(title: 'Flutter Demo'),
+      home: HomeScreen(title: 'Flutterians'),
     );
   }
 }
