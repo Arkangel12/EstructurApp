@@ -1,5 +1,5 @@
+import 'package:estructurapp/src/screens/ending2018Screen.dart';
 import 'package:estructurapp/src/screens/homeScreen.dart';
-import 'package:estructurapp/src/screens/layouts.dart';
 import 'package:flutter/material.dart';
 
 class EstructurApp extends StatelessWidget {
@@ -12,7 +12,7 @@ class EstructurApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
 //      home: HomeScreen(title: 'Flutter Demo'),
-      home: Layouts(),
+      home: Ending2018Screen(),
     );
   }
 }
