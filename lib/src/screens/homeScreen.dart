@@ -1,3 +1,5 @@
+import 'package:estructurapp/src/api/api.dart';
+import 'package:estructurapp/src/models/users.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -10,29 +12,43 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  final API api = API();
+  String dropdownValue;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Center(
-        child: Container()
+      body: FutureBuilder<List<Users>>(
+        future: api.getUsers(),
+        builder: (BuildContext context, AsyncSnapshot<List<Users>> snapshot) {
+          if (snapshot.hasData) {
+            return ListTile(
+              title: const Text('Scrollable dropdown:'),
+              trailing: DropdownButton<String>(
+                value: dropdownValue,
+                onChanged: (String newValue) {
+                  setState(() {
+                    dropdownValue = newValue;
+                  });
+                },
+                items: snapshot.data.map((Users value) {
+                  return DropdownMenuItem<String>(
+                    value: value.name,
+                    child: Text(value.name),
+                  );
+                }).toList(),
+              ),
+            );
+          } else {
+            return Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 }
