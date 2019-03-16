@@ -1,4 +1,6 @@
-import 'package:estructurapp/src/screens/homeScreen.dart';
+import 'package:estructurapp/src/screens/collapsingList.dart';
+
+//import 'package:estructurapp/src/screens/homeScreen.dart';
 import 'package:flutter/material.dart';
 
 class EstructurApp extends StatelessWidget {
@@ -10,7 +12,10 @@ class EstructurApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(title: 'Flutter Demo'),
+      home: SafeArea(
+        bottom: false,
+        child: CollapsingList(),
+      ),
     );
   }
 }
