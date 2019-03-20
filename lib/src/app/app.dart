@@ -6,11 +6,9 @@ class EstructurApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: HomeScreen(title: 'Flutter Demo'),
+      title: 'DecoratedBoxTransition',
+      theme: ThemeData.light(),
+      home: HomeScreen(title: 'Flutter DecoratedBoxTransition'),
     );
   }
 }
