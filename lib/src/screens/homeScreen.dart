@@ -9,40 +9,32 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
-
-  PersistentBottomSheetController controller;
+  bool open = false;
 
   @override
   Widget build(BuildContext context) {
-    double minHeight = MediaQuery.of(context).size.height / 10;
-    double height = minHeight;
-    return SafeArea(
-      bottom: false,
-      top: false,
-      child: Scaffold(
-        key: _scaffoldKey,
-        body: Stack(
-          fit: StackFit.expand,
-          children: <Widget>[
-            Container(
-              decoration: BoxDecoration(
-                color: Colors.grey,
-                image: DecorationImage(
-                  fit: BoxFit.cover,
-                  image: NetworkImage(
-                    'https://images.all-free-download.com/images/graphiclarge/blue_sky_and_white_clouds_hills_beauty_of_hd_picture_166026.jpg',
-                  ),
+    double minHeight = MediaQuery.of(context).size.height * .1;
+    double maxHeight = MediaQuery.of(context).size.height * .9;
+    return Scaffold(
+      body: Stack(
+        children: <Widget>[
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.grey,
+              image: DecorationImage(
+                fit: BoxFit.cover,
+                image: NetworkImage(
+                  'https://images.all-free-download.com/images/graphiclarge/blue_sky_and_white_clouds_hills_beauty_of_hd_picture_166026.jpg',
                 ),
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.symmetric(vertical: 25.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: const EdgeInsets.all(12.0),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: <Widget>[
+                Container(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 40.0, horizontal: 15.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
@@ -72,129 +64,73 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ],
                     ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            bottom: 0,
+            child: Container(
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.only(left: 30),
+                    child: Text(
+                      '13 February',
+                      style: TextStyle(
+                        color: Colors.white70,
+                        fontSize: 18,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  Padding(
+                    padding: EdgeInsets.only(left: 30, bottom: 40),
+                    child: Text(
+                      'Yo',
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 32,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  AnimatedContainer(
+                    duration: Duration(milliseconds: 1000),
+                    height: open ? maxHeight : minHeight,
+                    width: MediaQuery.of(context).size.width,
+                    constraints: BoxConstraints(minHeight: minHeight, maxHeight: maxHeight),
+                    alignment: Alignment.topCenter,
+                    padding: EdgeInsets.all(10),
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(50),
+                        topRight: Radius.circular(50),
+                      ),
+                    ),
+                    child: InkWell(
+                      onTap: () => setState(() => open = !open),
+                      child: Container(
+                        constraints: BoxConstraints(maxWidth: 70, maxHeight: 10),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[300],
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(5),
+                          ),
+                        ),
+                      ),
+                    ),
                   )
                 ],
               ),
             ),
-            Positioned(
-              bottom: 0,
-              child: Column(
-                children: <Widget>[
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    padding: EdgeInsets.only(left: 30, bottom: 40),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: <Widget>[
-                        Text(
-                          '13 February',
-                          style: TextStyle(
-                            color: Colors.white70,
-                            fontSize: 18,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                        SizedBox(height: 10),
-                        Text(
-                          'Yo',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 32,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  AnimatedContainer(
-                    duration: Duration(milliseconds: 2000),
-                    width: MediaQuery.of(context).size.width,
-                    height: height,
-                    constraints: BoxConstraints(minHeight: minHeight),
-                    alignment: Alignment.center,
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(30),
-                        topRight: Radius.circular(30),
-                      ),
-                    ),
-                    child: Container(
-                      constraints: BoxConstraints(maxWidth: 70, maxHeight: 10),
-                      decoration: BoxDecoration(
-                        color: Colors.grey[300],
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(5),
-                        ),
-                      ),
-//                      child:
-//                      InkWell(
-//                        onTap: () {
-//                          controller = _scaffoldKey.currentState
-//                              .showBottomSheet<Null>((BuildContext context) {
-//                            return Column(
-//                              children: <Widget>[
-//                                Container(
-//                                  width: MediaQuery.of(context).size.width,
-//                                  padding:
-//                                      EdgeInsets.only(left: 30, bottom: 40),
-//                                  child: Column(
-//                                    mainAxisSize: MainAxisSize.min,
-//                                    crossAxisAlignment:
-//                                        CrossAxisAlignment.start,
-//                                    children: <Widget>[
-//                                      Text(
-//                                        '13 February',
-//                                        style: TextStyle(
-//                                          color: Colors.white70,
-//                                          fontSize: 18,
-//                                          fontWeight: FontWeight.bold,
-//                                        ),
-//                                      ),
-//                                      SizedBox(height: 10),
-//                                      Text(
-//                                        'Yo',
-//                                        style: TextStyle(
-//                                          color: Colors.white,
-//                                          fontSize: 32,
-//                                          fontWeight: FontWeight.bold,
-//                                        ),
-//                                      ),
-//                                    ],
-//                                  ),
-//                                ),
-//                                Expanded(
-//                                  child: Container(
-//                                    decoration: BoxDecoration(
-//                                      borderRadius: BorderRadius.only(
-//                                        topLeft: Radius.circular(30),
-//                                        topRight: Radius.circular(30),
-//                                      ),
-//                                    ),
-//                                    child: Container(
-//                                      decoration: BoxDecoration(
-//                                        color: Colors.white,
-//                                        borderRadius: BorderRadius.only(
-//                                          topLeft: Radius.circular(50),
-//                                          topRight: Radius.circular(50),
-//                                        ),
-//                                      ),
-//                                    ),
-//                                  ),
-//                                ),
-//                              ],
-//                            );
-//                          });
-//                        },
-//                      ),
-                    ),
-                  ),
-                ],
-              ),
-            )
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }
