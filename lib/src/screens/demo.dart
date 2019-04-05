@@ -45,30 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: <Widget>[
                       circleButton(Icons.arrow_downward),
                       circleButton(Icons.more_vert),
-//                      Container(
-//                        width: 50,
-//                        height: 50,
-//                        decoration: BoxDecoration(
-//                          color: Colors.white,
-//                          shape: BoxShape.circle,
-//                        ),
-//                        child: Icon(
-//                          Icons.arrow_downward,
-//                          size: 30,
-//                        ),
-//                      ),
-//                      Container(
-//                        width: 50,
-//                        height: 50,
-//                        decoration: BoxDecoration(
-//                          color: Colors.white,
-//                          shape: BoxShape.circle,
-//                        ),
-//                        child: Icon(
-//                          Icons.more_vert,
-//                          size: 30,
-//                        ),
-//                      ),
                     ],
                   ),
                 ),
